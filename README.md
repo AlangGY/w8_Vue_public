@@ -1,3 +1,10 @@
+## Notion Clone w. Vue
+
+- [Vue3 version GiHub Repo](https://github.com/Leon-Miller/notion-clone-programmers)
+- [Netlify(SPA) DEMO](https://naughty-bhabha-d7e04d.netlify.app)
+- [NuxtJS(Vue2) Version GitHub Repo](https://github.com/Leon-Miller/notion-clone-programmers-nuxt)
+- [Heroku(SSR) DEMO](https://leon-notion-app.herokuapp.com)
+
 # 📌 8주차 과제[Mission8]
 
 API 사용에 대해 궁금한 점은 '질의응답' 채널에 질문 남겨주세요!
