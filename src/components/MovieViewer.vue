@@ -53,10 +53,6 @@
         </div>
         <div class="movie__plot--content">
           {{ selectedMovie.Plot }}
-          {{ selectedMovie.Plot }}
-          {{ selectedMovie.Plot }}
-          {{ selectedMovie.Plot }}
-          {{ selectedMovie.Plot }}
         </div>
       </div>
     </div>
@@ -115,7 +111,9 @@ export default {
     background-size: cover;
     background-blend-mode: darken;
     display: grid;
-    grid-template-columns: 500px 1fr;
+    grid-template-columns: 550px 1fr;
+    border-radius: 10px;
+    padding: 20px;
     * {
       box-sizing: border-box;
     }
@@ -124,20 +122,24 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0px 30px;
         height: 100%;
         overflow: scroll;
+
       }
       &__left {
         .movie {
           &__poster {
             height: 100%;
+            border-radius: 5px;
+            box-shadow: 0 0 20px -5px rgba(color.adjust($color-background, $lightness : 30%),.8);
             img {
-              width: 100%;
+              width: 500px;
+              border-radius: 5px;
             }
           }
           &__ratings {
             font-size: 16px;
+
           }
         }
       }
@@ -159,13 +161,15 @@ export default {
           }
           &__plot--content {
             margin-top: 10px;
+            width: 90%;
             line-height: 2;
             flex-grow: 1;
             overflow-y: auto;
             padding: 10px;
-            background-color: color.adjust($color-background, $lightness: -15%);
-            box-shadow: 0 0 5px 0px color.adjust($color-background, $lightness: 50%);
+            background-color: rgba(color.adjust($color-background, $lightness: 0%),.4);
+            box-shadow: 0 0 4px 0px color.adjust($color-background, $lightness: 10%);
             border-radius: 5px;
+            z-index: 1;
           }
         }
       }
