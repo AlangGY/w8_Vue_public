@@ -26,8 +26,10 @@ export default {
       this.$store.commit('assignState', { searchingBy : this.$refs.input.value });
     },
     searchBy(){
-      this.$router.push(`/search/${this.searchingBy}`);
-      this.$refs.input.value = '';
+      if (this.$refs.input.value){
+        this.$router.push(`/search/${this.searchingBy}`);
+        this.$refs.input.value = '';
+      }
     }
   }
 };
