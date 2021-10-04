@@ -21,10 +21,14 @@
         :key="movie.imdbID"
         class="movie__container"
         @click="getMovieById(movie.imdbID)">
-        <img
-          :src="movie.Poster"
-          :alt="movie.Title"
-          class="movie__poster">
+        <div class="movie__poster--container">
+          <img
+            :ref="`${movie.imdbID}Image`"
+            :src="movie.Poster"
+            :alt="movie.Title"
+            class="movie__poster--image"
+            @error="$refs[`${movie.imdbID}Image`].style.display='none'">
+        </div>
         <div class="movie__title">
           {{ movie.Title }}
         </div>
@@ -95,7 +99,6 @@ export default {
 .search__inner {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding: 20px;
   overflow-y: auto;
   height: 100%;
@@ -134,9 +137,14 @@ export default {
         transform: scale(1.01);
       }
       .movie {
-        &__poster {
+        &__poster--container {
           width: 300px;
           height: 450px;
+          background-color: white;
+          .movie__poster--image {
+            width: 300px;
+            height: 450px;
+          }
         }
         &__title {
           text-align: center;

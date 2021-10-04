@@ -7,54 +7,65 @@
       :style="{'background-image' : `url(${biggerImageUrl})`}"
       class="movie-viewer__inner"
       @click.stop>
-      <div class="inner__left">
-        <div class="inner__column">
-          <div class="movie__released">
-            {{ selectedMovie.Released }}
-          </div>
-          <div class="divider"></div>
-          <div class="movie__runtime">
-            {{ selectedMovie.Runtime }}
-          </div>
-        </div>
-        <div class="inner__column">
-          <div class="movie__poster">
-            <img
-              :src="biggerImageUrl"
-              :alt="selectedMovie.Title">
-          </div>
-        </div>
-        <div class="inner__column">
-          <ul class="movie__ratings">
-            <li
-              v-for="rating in selectedMovie.Ratings"
-              :key="rating.Source">
-              {{ rating.Source }}
-              <div class="divider">
-                :
-              </div>
-              {{ rating.Value }}
-            </li>
-          </ul>
+      <div
+        v-if="isLoading"
+        class="loading__container">
+        <div class="loading__content">
+          Loading...
         </div>
       </div>
-      <div class="inner__right">
-        <div class="movie__title">
-          {{ selectedMovie.Title }}
+      <template v-else>
+        <div class="inner__left">
+          <div class="inner__column">
+            <div class="movie__released">
+              {{ selectedMovie.Released }}
+            </div>
+            <div class="divider"></div>
+            <div class="movie__runtime">
+              {{ selectedMovie.Runtime }}
+            </div>
+          </div>
+          <div class="inner__column">
+            <div class="movie__poster">
+              <img
+                ref="poster"
+                :src="biggerImageUrl"
+                :alt="selectedMovie.Title"
+                @error="$refs.poster.style.display = 'none'">
+            </div>
+          </div>
+          <div class="inner__column">
+            <ul class="movie__ratings">
+              <li
+                v-for="rating in selectedMovie.Ratings"
+                :key="rating.Source">
+                {{ rating.Source }}
+                <div class="divider">
+                  :
+                </div>
+                {{ rating.Value }}
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="movie__director">
-          감독 : {{ selectedMovie.Director }}
+        <div class="inner__right">
+          <div class="movie__title">
+            {{ selectedMovie.Title }}
+          </div>
+          <div class="movie__director">
+            감독 : {{ selectedMovie.Director }}
+          </div>
+          <div class="movie__actors">
+            출연 : {{ selectedMovie.Actors }}
+          </div>
+          <div class="movie__plot">
+            줄거리
+          </div>
+          <div class="movie__plot--content">
+            {{ selectedMovie.Plot }}
+          </div>
         </div>
-        <div class="movie__actors">
-          출연 : {{ selectedMovie.Actors }}
-        </div>
-        <div class="movie__plot">
-          줄거리
-        </div>
-        <div class="movie__plot--content">
-          {{ selectedMovie.Plot }}
-        </div>
-      </div>
+      </template>
     </div>
   </div>
 </template>
@@ -68,6 +79,9 @@ export default {
     }
   },
   emits : ['close-viewer'],
+  data(){
+    return { isLoading : true };
+  },
   computed : {
     biggerImageUrl(){
       const originalImageUrl = this.selectedMovie?.Poster;
@@ -80,8 +94,8 @@ export default {
     }
   },
   watch : {
-    selectedMovie(newValue){
-      console.log(newValue);
+    selectedMovie(){
+      this.isLoading = false;
     }
   },
   methods : {
@@ -114,8 +128,26 @@ export default {
     grid-template-columns: 550px 1fr;
     border-radius: 10px;
     padding: 20px;
+    position: relative;
     * {
       box-sizing: border-box;
+    }
+    .loading__container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .loading__content {
+        display: inline-block;
+        width: 50px;
+
+      }
+
+
     }
     .inner {
       &__left, &__right {
@@ -129,11 +161,14 @@ export default {
       &__left {
         .movie {
           &__poster {
-            height: 100%;
+            height: 750px;
+            width: 500px;
             border-radius: 5px;
             box-shadow: 0 0 20px -5px rgba(color.adjust($color-background, $lightness : 30%),.8);
+            background-color: rgba($color-background,.7);
             img {
               width: 500px;
+              height: 750px;
               border-radius: 5px;
             }
           }
