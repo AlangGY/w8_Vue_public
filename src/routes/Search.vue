@@ -95,6 +95,7 @@ export default {
 .search__inner {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 20px;
   overflow-y: auto;
   height: 100%;
@@ -114,6 +115,7 @@ export default {
     column-gap: 10px;
     row-gap: 20px;
     overflow-y: scroll;
+    justify-items: center;
     .movie__container {
       width: 300px;
       cursor: pointer;
