@@ -1,6 +1,6 @@
 $color-font : #f5f6fa;
 $color-background : #1e2224;
-
+$color-border : color.adjust($color-background , $lightness : -20%);
 
 
 

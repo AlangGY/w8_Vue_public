@@ -1,6 +1,8 @@
 <template>
   <section class="search__inner">
-    <h1> {{ searchingBy }} 검색 결과</h1>
+    <div class="search__keyword">
+      {{ searchingBy }}
+    </div>
     <ul class="movies__grid">
       <li
         v-for="movie in movies"
@@ -11,7 +13,9 @@
           :src="movie.Poster"
           :alt="movie.Title"
           class="movie__poster">
-        Title :  {{ movie.Title }} , Type : {{ movie.Type }} , Year : {{ movie.Year }}
+        <div class="movie__title">
+          {{ movie.Title }}
+        </div>
       </li>
     </ul>
     <MovieViewer
@@ -78,20 +82,51 @@ export default {
   padding: 20px;
   overflow-y: auto;
   height: 100%;
-  h1 {
-
+  .search__keyword {
+    font-size: 32px;
+    width: 500px;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $color-border;
   }
   .movies__grid {
     height: 100%;
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(5,1fr);
-    padding: 10px;
-    gap: 10px;
+    padding-bottom: 10px;
+    column-gap: 10px;
+    row-gap: 20px;
     overflow-y: scroll;
     .movie__container {
-      background-color: royalblue;
       width: 300px;
+      cursor: pointer;
+      transition: .2s ease-in-out;
+      &:hover {
+        .movie {
+          &__poster {
+            transition: .2s ease-in-out;
+            filter: brightness(1.5);
+          }
+          &__title {
+
+          }
+        }
+        // background-color: rgba(white,.5);
+        transform: scale(1.01);
+      }
+      .movie {
+        &__poster {
+          width: 300px;
+          height: 450px;
+        }
+        &__title {
+          text-align: center;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
     }
   }
 }
