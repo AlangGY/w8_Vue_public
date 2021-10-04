@@ -4,8 +4,9 @@
     <ul class="movies__grid">
       <li
         v-for="movie in movies"
-        :key="movie.imdbId"
-        class="movie__container">
+        :key="movie.imdbID"
+        class="movie__container"
+        @click="getMovieById(movie.imdbID)">
         <img
           :src="movie.Poster"
           :alt="movie.Title"
@@ -13,7 +14,10 @@
         Title :  {{ movie.Title }} , Type : {{ movie.Type }} , Year : {{ movie.Year }}
       </li>
     </ul>
-    <MovieViewer />
+    <MovieViewer
+      v-if="isMovieSelected"
+      :selected-movie="selectedMovie"
+      @close-viewer="closeViewer" />
   </section>
 </template>
 
@@ -23,7 +27,10 @@ import MovieViewer from '~/components/MovieViewer';
 export default {
   components : { MovieViewer },
   data(){
-    return { page : 1 };
+    return { 
+      page : 1,
+      selectedMovie : {}
+    };
   },
   computed : {
     searchingBy(){
@@ -34,15 +41,32 @@ export default {
     },
     params(){
       return { searchingBy : this.searchingBy, page : this.page };
+    },
+    isMovieSelected(){
+      return this.selectedMovie.imdbID;
     }
   },
   watch : {
     $route() {
-      this.$store.dispatch('searchMovie', this.params);
+      this.$store.dispatch('searchMovies', this.params);
     }
   },
   created() {
-    this.$store.dispatch('searchMovie', this.params);
+    this.$store.dispatch('searchMovies', this.params);
+  },
+  methods : {
+    log(e){
+      console.log(e);
+    },
+    async getMovieById(id){
+      const movie = await this.$store.dispatch('getMovieById', { id, plot : 'short' });
+      if(movie){
+        this.selectedMovie = movie;
+      }
+    },
+    closeViewer(){
+      this.selectedMovie = {};
+    }
   }
 };
 </script>

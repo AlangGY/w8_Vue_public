@@ -1,9 +1,37 @@
 <template>
-  <div class="movie-viewer__container">
-    <div class="movie-viewer__inner">
+  <div
+    class="movie-viewer__container"
+    @click="closeViewer">
+    <div
+      ref="movieViewer"
+      class="movie-viewer__inner"
+      @click.stop>
+      {{ selectedMovie.title }}
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props : {
+    selectedMovie : {
+      type : Object,
+      default : () => ({})
+    }
+  },
+  emits : ['close-viewer'],
+  watch : {
+    selectedMovie(newValue){
+      console.log(newValue);
+    }
+  },
+  methods : {
+    closeViewer(){
+      this.$emit('close-viewer');
+    }
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 .movie-viewer__container {
@@ -13,8 +41,7 @@
   height: 100%;
   width: 100%;
   background-color: rgba(black,.4);
-  // display: flex;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
 

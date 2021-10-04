@@ -17,11 +17,18 @@ export default createStore({
     }
   },
   actions : {
-    async searchMovie({ commit }, payload){
+    async searchMovies({ commit }, payload){
       const { searchingBy, page } = payload;
       const movies = await _request(`s=${searchingBy}&page=${page}`);
       if (movies.Response === 'True'){
         commit('assignState', { movies : movies.Search, moviesTotalCount : movies.totalResults });
+      }
+    },
+    async getMovieById(context, payload) {
+      const { id, plot } = payload;
+      const movie = await _request(`i=${id}&plot=${plot}`);
+      if (movie.Response === 'True'){
+        return movie;
       }
     }
   } 
@@ -31,12 +38,9 @@ export default createStore({
 const API_END_POINT = 'https://www.omdbapi.com';
 const API_KEY = '7035c60c';
 
-async function _request ( restParams, options ={}) {
+async function _request ( restParams) {
   const res = await fetch(`${API_END_POINT}?apikey=${API_KEY}&type=movie&${restParams}`,
-    { 
-      ...options,
-      method : 'GET' 
-    })
+    { method : 'GET' })
     .then(res => res.json());
   return res;
 }
