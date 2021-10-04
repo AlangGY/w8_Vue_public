@@ -14,14 +14,18 @@ export default { components : { Nav } };
 </script>
 
 <style lang="scss" scoped>
+  * {
+    box-sizing: border-box;
+  }
 .app__inner {
   font-family: 'Noto Sans KR', sans-serif;
   color : $color-font;
   height: calc(100vh - $height-nav);
   background-color: $color-background;
-  * {
-    box-sizing: border-box;
-  }
+  font-size: 18px;
+  line-height: 1.4;
+  
+
   .app__page {
     height: 100%;
     margin-top: $height-nav;

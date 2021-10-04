@@ -29,7 +29,8 @@ export default {
   data(){
     return { 
       page : 1,
-      selectedMovie : {}
+      selectedMovie : {},
+      isMovieSelected : false
     };
   },
   computed : {
@@ -41,9 +42,6 @@ export default {
     },
     params(){
       return { searchingBy : this.searchingBy, page : this.page };
-    },
-    isMovieSelected(){
-      return this.selectedMovie.imdbID;
     }
   },
   watch : {
@@ -59,13 +57,15 @@ export default {
       console.log(e);
     },
     async getMovieById(id){
-      const movie = await this.$store.dispatch('getMovieById', { id, plot : 'short' });
-      if(movie){
+      this.isMovieSelected = true;
+      const movie = await this.$store.dispatch('getMovieById', { id, plot : 'full' });
+      if(movie && this.isMovieSelected){
         this.selectedMovie = movie;
       }
     },
     closeViewer(){
       this.selectedMovie = {};
+      this.isMovieSelected = false;
     }
   }
 };
