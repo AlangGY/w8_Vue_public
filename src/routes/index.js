@@ -20,7 +20,6 @@ export default createRouter({
       name : 'Search',
       path : '/search/:keyword',
       component : Search
-      
     },
     {
       name : 'Movie',
