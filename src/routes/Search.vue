@@ -3,7 +3,19 @@
     <div class="search__keyword">
       {{ searchingBy }}
     </div>
-    <ul class="movies__grid">
+    <div
+      v-if="isLoading"
+      class="search__loading">
+      Loading...
+    </div>
+    <div
+      v-else-if="searchingBy && movies.length === 0"
+      class="search__error">
+      No Result!
+    </div>
+    <ul
+      v-else
+      class="movies__grid">
       <li
         v-for="movie in movies"
         :key="movie.imdbID"
@@ -34,6 +46,7 @@ export default {
     return { 
       page : 1,
       selectedMovie : {},
+      isLoading : false,
       isMovieSelected : false
     };
   },
@@ -50,15 +63,18 @@ export default {
   },
   watch : {
     $route() {
-      this.$store.dispatch('searchMovies', this.params);
+      this.searchMovies();
     }
   },
   created() {
-    this.$store.dispatch('searchMovies', this.params);
+    this.searchMovies();
   },
   methods : {
-    log(e){
-      console.log(e);
+    async searchMovies(){
+      this.isLoading = true;
+      await this.$store.dispatch('searchMovies', this.params);
+      this.isLoading = false;
+
     },
     async getMovieById(id){
       this.isMovieSelected = true;

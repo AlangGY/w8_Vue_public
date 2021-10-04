@@ -23,6 +23,9 @@ export default createStore({
       if (movies.Response === 'True'){
         commit('assignState', { movies : movies.Search, moviesTotalCount : movies.totalResults });
       }
+      else {
+        commit('assignState', { movies : [], moviesTotalCount : 0 });
+      }
     },
     async getMovieById(context, payload) {
       const { id, plot } = payload;
