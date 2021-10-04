@@ -3,9 +3,11 @@
     <div class="nav__inner">
       <div class="nav__logo--container">
         <div class="logo__img"></div>
-        <div class="logo__title">
+        <router-link
+          class="logo__title"
+          to="/">
           Alang Movie
-        </div>
+        </router-link>
       </div>
       <div class="nav__search-bar--container">
         <SearchBar />
@@ -28,26 +30,41 @@ nav {
   top: 0;
   background-color: color.adjust($color-background,$lightness: -20%);
   .nav__inner {
+    height: 100%;
     display: flex;
     align-items: center;
     column-gap: 15px;
+    position: relative;
     .nav {
       &__logo--container {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
         .logo {
           &__img {
-
+            width: 40px;
+            height: 40px;
+            background-image: url("https://ca.slack-edge.com/T024MG1J97Z-U0295HH23AB-51cc069ef6d8-72");
+            background-size: cover;
+            margin-right: 10px;
           }
           &__title {
-
+            font-size: 32px;
+            text-decoration: none;
+            color: $color-font;
+            &:hover {
+              opacity: .7;
+            }
           }
         }
       }
       &__search-bar--container {
-        form {
-          input {
-
-          }
-        }
+        width: 500px;
+        height: 50px;
+        position: absolute;
+        top: calc(50% - 25px);
+        left: calc(50% - 250px);
+        margin: 0 auto;
       }
     }
   }
