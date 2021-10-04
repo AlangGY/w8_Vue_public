@@ -1,21 +1,18 @@
 <template>
   <section class="search__inner">
-    <h1> ... 검색 결과</h1>
-    <div class="movies__grid">
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-      <div class="movie__container"></div>
-    </div>
+    <h1> {{ searchingBy }} 검색 결과</h1>
+    <ul class="movies__grid">
+      <li
+        v-for="movie in movies"
+        :key="movie.imdbId"
+        class="movie__container">
+        <img
+          :src="movie.Poster"
+          :alt="movie.Title"
+          class="movie__poster">
+        Title :  {{ movie.Title }} , Type : {{ movie.Type }} , Year : {{ movie.Year }}
+      </li>
+    </ul>
     <MovieViewer />
   </section>
 </template>
@@ -23,7 +20,31 @@
 <script>
 import MovieViewer from '~/components/MovieViewer';
 
-export default { components : { MovieViewer } };
+export default {
+  components : { MovieViewer },
+  data(){
+    return { page : 1 };
+  },
+  computed : {
+    searchingBy(){
+      return this.$route.params.keyword;
+    },
+    movies(){
+      return this.$store.state.movies;
+    },
+    params(){
+      return { searchingBy : this.searchingBy, page : this.page };
+    }
+  },
+  watch : {
+    $route() {
+      this.$store.dispatch('searchMovie', this.params);
+    }
+  },
+  created() {
+    this.$store.dispatch('searchMovie', this.params);
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -40,14 +61,13 @@ export default { components : { MovieViewer } };
     height: 100%;
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-auto-rows: 300px;
+    grid-template-columns: repeat(5,1fr);
     padding: 10px;
     gap: 10px;
     overflow-y: scroll;
-    background-color: burlywood;
     .movie__container {
       background-color: royalblue;
+      width: 300px;
     }
   }
 }

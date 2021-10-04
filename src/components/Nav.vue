@@ -8,13 +8,17 @@
         </div>
       </div>
       <div class="nav__search-bar--container">
-        <form>
-          <input type="text">
-        </form>
+        <SearchBar />
       </div>
     </div>
   </nav>
 </template>
+
+<script>
+import SearchBar from '~/components/SearchBar';
+
+export default { components : { SearchBar } };
+</script>
 
 <style lang="scss" scoped>
 nav {
