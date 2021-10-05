@@ -107,6 +107,68 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen and (min-width : 1301px ) {
+  .movie-viewer__container {
+    .movie-viewer__inner {
+      .inner {
+        &__left, &__right {
+          height: 100%;
+
+        }
+        &__left {
+          .movie__poster {
+            height: 600px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 1300px ) {
+.movie-viewer__container {
+  .movie-viewer__inner {
+    flex-direction: column;
+    .inner {
+      &__right {
+        height: 100%;
+        .movie__plot--content {
+          width: 90%;
+          font-size: 24px;
+        }  
+      }
+      &__left {
+        height: auto;
+      }
+    }
+  }
+  }
+}
+
+@media screen and (max-width : 650px) {
+  .movie-viewer__container {
+    .movie-viewer__inner {
+      flex-direction: column;
+      .inner {
+        &__left {
+          .movie__poster {
+            img {
+              width: 300px;
+            }
+          }
+        }
+        &__right {
+          .movie__plot--content {
+            width: 100%;
+            font-size: 20px;
+          }  
+        }
+      }
+    }
+  }
+}
+
+
 .movie-viewer__container {
   position: absolute;
   top: 0;
@@ -117,18 +179,20 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: hidden;
 
   .movie-viewer__inner {
-    width: 80%;
+    width: 85%;
     height: 90%;
     background-color: rgba(color.adjust($color-background, $lightness : -30%),.8);
     background-size: cover;
     background-blend-mode: darken;
-    display: grid;
-    grid-template-columns: 550px 1fr;
+    display: flex;
     border-radius: 10px;
     padding: 20px;
     position: relative;
+    overflow-y: scroll;
+    align-items: center;
     * {
       box-sizing: border-box;
     }
@@ -144,21 +208,22 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 100%;
-        overflow-y: scroll;
 
       }
       &__left {
+        width: 550px;
+        flex-shrink: 0;
         .movie {
           &__poster {
-            height: 750px;
-            width: 500px;
+            // height: 750px;
+            // width: 500px;
             border-radius: 5px;
             box-shadow: 0 0 20px -5px rgba(color.adjust($color-background, $lightness : 30%),.8);
             background-color: rgba($color-background,.7);
             img {
-              width: 500px;
-              height: 750px;
+              height: 100%;
+              // width: 500px;
+              // height: 700px;
               border-radius: 5px;
             }
           }
@@ -169,24 +234,25 @@ export default {
         }
       }
       &__right {
+        flex-grow: 1;
         padding-bottom: 20px;
         .movie {
           &__title {
             font-size: 50px;
             font-weight: bold;
-            margin-bottom: 30px
+            margin-bottom: 30px;
+            text-align: center;
           }
           &__director, &__actors {
             align-self: flex-start;
+            margin-left: 30px;
 
           }
           &__plot {
             margin-top: 30px;
-            font-size: 32px;
           }
           &__plot--content {
             margin-top: 10px;
-            width: 90%;
             line-height: 2;
             flex-grow: 1;
             overflow-y: auto;
