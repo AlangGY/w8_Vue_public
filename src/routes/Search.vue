@@ -133,10 +133,23 @@ export default {
   position: absolute;
   .search__keyword {
     font-size: 32px;
-    width: 500px;
+    font-weight: 700;
+    // text-align: end;
+    // padding-left: 50px;
+    // width: 500px;
     padding-bottom: 5px;
     margin-bottom: 20px;
-    border-bottom: 1px solid $color-border;
+    // border-bottom: 1px solid $color-border;
+    box-shadow: 0 5px 3px -3px color.adjust($color-border, $lightness : 10%);
+  }
+  .movies__grid::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 5px;
+    background-color: rgba(#aaa,.2);
+    &-thumb {
+      border-radius: 5px;
+      background:color.adjust($color-border, $lightness: -70%);
+    }
   }
   .movies__grid {
     height: 100%;
@@ -148,9 +161,6 @@ export default {
     row-gap: 20px;
     overflow-y: scroll;
     justify-items: center;
-    // @media screen and (min-width: 1600px) {
-    //   grid-template-columns: repeat(5,300px); 
-    // }
     .movie__container {
       width: 300px;
       height: 480px;

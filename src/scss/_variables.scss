@@ -1,6 +1,12 @@
-$color-font : #f5f6fa;
-$color-background : #1e2224;
-$color-border : color.adjust($color-background , $lightness : -20%);
+$color-font : #0e0e0e;
+$color-white : white;
+$color-black : black;
+$color-background : #99999a;
+$color-background--gradient :
+  linear-gradient(
+     color.adjust($color-background, $lightness : 50%),$color-background);
+$color-nav : rgb(255, 255, 255);
+$color-border : color.adjust($color-background , $lightness : 20%);
 
 
 

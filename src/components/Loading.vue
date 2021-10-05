@@ -29,8 +29,8 @@ export default {
   .loading--cycle {
     border: 5px solid black;
     border-radius: 50%;
-    border-top-color: $color-font;
-    animation: spin 0.8s infinite ease-in-out;
+    border-top-color: $color-white;
+    animation: spin 0.5s infinite ease-in;
   }
 }
 @keyframes spin {

@@ -40,7 +40,9 @@ nav {
   height: $height-nav;
   position: fixed;
   top: 0;
-  background-color: color.adjust($color-background,$lightness: -20%);
+  background-color: $color-nav;
+  // border-bottom: 1px solid $color-border;
+  box-shadow: 0 0 5px 0 color.adjust($color-border, $lightness : -10%);
   .nav__inner {
     height: 100%;
     display: flex;

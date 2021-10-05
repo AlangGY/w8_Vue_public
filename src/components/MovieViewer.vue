@@ -107,68 +107,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@media screen and (min-width : 1301px ) {
-  .movie-viewer__container {
-    .movie-viewer__inner {
-      .inner {
-        &__left, &__right {
-          height: 100%;
-
-        }
-        &__left {
-          .movie__poster {
-            height: 600px;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width : 1300px ) {
-.movie-viewer__container {
-  .movie-viewer__inner {
-    flex-direction: column;
-    .inner {
-      &__right {
-        height: 100%;
-        .movie__plot--content {
-          width: 90%;
-          font-size: 24px;
-        }  
-      }
-      &__left {
-        height: auto;
-      }
-    }
-  }
-  }
-}
-
-@media screen and (max-width : 650px) {
-  .movie-viewer__container {
-    .movie-viewer__inner {
-      flex-direction: column;
-      .inner {
-        &__left {
-          .movie__poster {
-            img {
-              width: 300px;
-            }
-          }
-        }
-        &__right {
-          .movie__plot--content {
-            width: 100%;
-            font-size: 20px;
-          }  
-        }
-      }
-    }
-  }
-}
-
-
 .movie-viewer__container {
   position: absolute;
   top: 0;
@@ -180,6 +118,7 @@ export default {
   justify-content: center;
   align-items: center;
   overflow-y: hidden;
+  color: $color-white;
 
   .movie-viewer__inner {
     width: 85%;
@@ -189,6 +128,8 @@ export default {
     background-blend-mode: darken;
     display: flex;
     border-radius: 10px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4.1px;
     padding: 20px;
     position: relative;
     overflow-y: scroll;
@@ -277,5 +218,66 @@ export default {
 .divider {
   margin: 0 10px;
   display: inline-block;
+}
+
+@media screen and (min-width : 1301px ) {
+  .movie-viewer__container {
+    .movie-viewer__inner {
+      .inner {
+        &__left, &__right {
+          height: 100%;
+
+        }
+        &__left {
+          .movie__poster {
+            height: 600px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 1300px ) {
+.movie-viewer__container {
+  .movie-viewer__inner {
+    flex-direction: column;
+    .inner {
+      &__right {
+        height: 100%;
+        .movie__plot--content {
+          width: 90%;
+          font-size: 24px;
+        }  
+      }
+      &__left {
+        height: auto;
+      }
+    }
+  }
+  }
+}
+
+@media screen and (max-width : 650px) {
+  .movie-viewer__container {
+    .movie-viewer__inner {
+      flex-direction: column;
+      .inner {
+        &__left {
+          .movie__poster {
+            img {
+              width: 300px;
+            }
+          }
+        }
+        &__right {
+          .movie__plot--content {
+            width: 100%;
+            font-size: 20px;
+          }  
+        }
+      }
+    }
+  }
 }
 </style>

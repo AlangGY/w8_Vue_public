@@ -50,12 +50,10 @@ form {
     transition: 0.2s ease-in-out;
     &:focus-within {
       width: 100%;
-      .material-icons {
-        color: black;
-      }
     }
     .material-icons {
       position: absolute;
+      color: $color-black;
       font-size: 40px;
       top: calc(50% - 20px);
       right: 0;
@@ -65,8 +63,9 @@ form {
     input {
       width: 100%;
       height: 100%;
-      background-color: color.adjust($color-background, $lightness: 10%);
-      border: none;
+      // background-color: color.adjust($color-background, $lightness: 10%);
+      border: 3px solid $color-black;
+      box-shadow: 0 0 6px -1px $color-black;
       border-radius: 5px;
       color: $color-font;
       font-size: 30px;

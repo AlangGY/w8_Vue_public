@@ -13,15 +13,29 @@ import Nav from '~/components/Nav';
 export default { components : { Nav } };
 </script>
 
-<style lang="scss" scoped>
-  * {
-    box-sizing: border-box;
+<style lang="scss">
+* {
+  box-sizing: border-box;
+  
+}
+*::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 5px;
+    background-color: rgba(rgb(218, 218, 218),.5);
+    &-thumb {
+      border-radius: 5px;
+      background:color.adjust($color-border, $lightness: -70%);
+    }
   }
+body {
+  background-color: $color-background;
+}
 .app__inner {
+  background : $color-background--gradient;
+  // background-color: $color-background;
   font-family: 'Noto Sans KR', sans-serif;
   color : $color-font;
   height: calc(100vh - $height-nav);
-  background-color: $color-background;
   font-size: 18px;
   line-height: 1.4;
   
