@@ -120,6 +120,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen {
+  
+}
 .search__inner {
   display: flex;
   flex-direction: column;
@@ -138,12 +141,16 @@ export default {
   .movies__grid {
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit,300px);
     padding : 10px 0;
     column-gap: 10px;
     row-gap: 20px;
     overflow-y: scroll;
     justify-items: center;
+    // @media screen and (min-width: 1600px) {
+    //   grid-template-columns: repeat(5,300px); 
+    // }
     .movie__container {
       width: 300px;
       height: 480px;
@@ -182,7 +189,7 @@ export default {
       }
     }
     .movies__loader--container {
-      grid-column: span 4;
+      grid-column: 1 / -1;
       height: 50px;
       width: 100%;
     }
