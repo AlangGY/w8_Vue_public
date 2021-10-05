@@ -7,7 +7,11 @@
       :style="{'background-image' : `url(${biggerImageUrl})`}"
       class="movie-viewer__inner"
       @click.stop>
-      <Loading v-if="isLoading" />
+      <div
+        v-if="isLoading"
+        class="loading__inner">
+        <Loading />
+      </div>
       <template v-else>
         <div class="inner__left">
           <div class="inner__column">
@@ -127,6 +131,13 @@ export default {
     position: relative;
     * {
       box-sizing: border-box;
+    }
+    .loading__inner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
     }
     .inner {
       &__left, &__right {

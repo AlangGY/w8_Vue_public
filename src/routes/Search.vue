@@ -3,7 +3,7 @@
     <div class="search__keyword">
       {{ searchingBy }}
     </div>
-    <Loading v-if="isLoading" />
+    <Loading v-if="isfirstLoading" />
     <div
       v-else-if="searchingBy && movies.length === 0"
       class="search__error">
@@ -29,6 +29,13 @@
           {{ movie.Title }}
         </div>
       </li>
+      <div
+        class="movies__loader--container">
+        <MovieLoader
+          v-if="0 < movies.length < moviesTotalCount"
+          :is-loading="isLoading"
+          @touched="searchMovies" />
+      </div>
     </ul>
     <MovieViewer
       v-if="isMovieSelected"
@@ -39,15 +46,19 @@
 
 <script>
 import MovieViewer from '~/components/MovieViewer';
+import MovieLoader from '~/components/MovieLoader';
 import Loading from '~/components/Loading';
+
 export default {
-  components : { MovieViewer, Loading },
+  components : { MovieViewer, MovieLoader, Loading },
   data(){
     return { 
       page : 1,
       selectedMovie : {},
+      isfirstLoading : true,
       isLoading : false,
       isMovieSelected : false
+
     };
   },
   computed : {
@@ -57,12 +68,17 @@ export default {
     movies(){
       return this.$store.state.movies;
     },
+    moviesTotalCount(){
+      return this.$store.state.moviesTotalCount;
+    },
     params(){
       return { searchingBy : this.searchingBy, page : this.page };
     }
+    
   },
   watch : {
     $route() {
+      this.initialize();
       this.searchMovies();
     }
   },
@@ -71,10 +87,16 @@ export default {
   },
   methods : {
     async searchMovies(){
-      this.isLoading = true;
-      await this.$store.dispatch('searchMovies', this.params);
-      this.isLoading = false;
-
+      if(!this.isLoading){
+        this.isLoading = true;
+        console.log('get movies!');
+        await this.$store.dispatch('searchMovies', this.params);
+        this.$nextTick(() => {
+          this.isLoading = false;
+          this.page++;
+        });
+      }
+      if (this.isfirstLoading) this.isfirstLoading = false;
     },
     async getMovieById(id){
       this.isMovieSelected = true;
@@ -82,6 +104,12 @@ export default {
       if(movie && this.isMovieSelected){
         this.selectedMovie = movie;
       }
+    },
+    initialize(){
+      this.$store.commit('assignState', { movies : [], moviesTotalCount : 0 });
+      this.page = 1;
+      this.isfirstLoading = true;
+
     },
     closeViewer(){
       this.selectedMovie = {};
@@ -109,7 +137,6 @@ export default {
   }
   .movies__grid {
     height: 100%;
-    flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(5,1fr);
     padding : 10px 0;
@@ -119,6 +146,7 @@ export default {
     justify-items: center;
     .movie__container {
       width: 300px;
+      height: 480px;
       cursor: pointer;
       transition: .2s ease-in-out;
       &:hover {
@@ -152,6 +180,11 @@ export default {
           white-space: nowrap;
         }
       }
+    }
+    .movies__loader--container {
+      grid-column: span 4;
+      height: 50px;
+      width: 100%;
     }
   }
 }

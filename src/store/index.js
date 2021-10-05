@@ -12,6 +12,9 @@ export default createStore({
         state[key] = payload[key];
       });
     },
+    pushMovies(state, payload) {
+      payload.movies.forEach((movie) => state.movies.push(movie));
+    },
     updateSearchingBy(state, newValue){
       state.searchingBy = newValue;
     }
@@ -21,7 +24,8 @@ export default createStore({
       const { searchingBy, page } = payload;
       const movies = await _request(`s=${searchingBy}&page=${page}`);
       if (movies.Response === 'True'){
-        commit('assignState', { movies : movies.Search, moviesTotalCount : movies.totalResults });
+        commit('pushMovies', { movies : movies.Search });
+        commit('assignState', { moviesTotalCount : movies.totalResults });
       }
       else {
         commit('assignState', { movies : [], moviesTotalCount : 0 });
