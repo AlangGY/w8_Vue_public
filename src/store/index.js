@@ -28,7 +28,7 @@ export default createStore({
         commit('assignState', { moviesTotalCount : movies.totalResults });
       }
       else {
-        commit('assignState', { movies : [], moviesTotalCount : 0 });
+        // commit('assignState', { movies : [], moviesTotalCount : 0 });
       }
     },
     async getMovieById(context, payload) {

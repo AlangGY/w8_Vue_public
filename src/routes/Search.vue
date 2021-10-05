@@ -32,7 +32,7 @@
       <div
         class="movies__loader--container">
         <MovieLoader
-          v-if="0 < movies.length < moviesTotalCount"
+          v-if="movies.length < moviesTotalCount"
           :is-loading="isLoading"
           @touched="searchMovies" />
       </div>
