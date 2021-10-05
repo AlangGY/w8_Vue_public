@@ -23,6 +23,18 @@ export default { components : { SearchBar } };
 </script>
 
 <style lang="scss" scoped>
+
+
+@media screen and (max-width : 960px) {
+    .nav__inner {
+      .nav__logo--container {
+        .logo__title {
+          display: none;
+        }
+    }
+  }
+}
+
 nav {
   width: 100%;
   height: $height-nav;
@@ -52,6 +64,8 @@ nav {
             font-size: 32px;
             text-decoration: none;
             color: $color-font;
+            opacity: 0;
+            animation: show 1s ease-in-out forwards;
             &:hover {
               opacity: .7;
             }
@@ -61,12 +75,17 @@ nav {
       &__search-bar--container {
         width: 500px;
         height: 50px;
-        position: absolute;
         top: calc(50% - 25px);
         left: calc(50% - 250px);
-        margin: 0 auto;
+        position: absolute;
+
       }
     }
+  }
+}
+@keyframes show {
+  to {
+    opacity: 1;
   }
 }
 </style>
