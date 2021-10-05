@@ -7,13 +7,7 @@
       :style="{'background-image' : `url(${biggerImageUrl})`}"
       class="movie-viewer__inner"
       @click.stop>
-      <div
-        v-if="isLoading"
-        class="loading__container">
-        <div class="loading__content">
-          Loading...
-        </div>
-      </div>
+      <Loading v-if="isLoading" />
       <template v-else>
         <div class="inner__left">
           <div class="inner__column">
@@ -71,7 +65,9 @@
 </template>
 
 <script>
+import Loading from '~/components/Loading';
 export default {
+  components : { Loading },
   props : {
     selectedMovie : {
       type : Object,
@@ -132,30 +128,13 @@ export default {
     * {
       box-sizing: border-box;
     }
-    .loading__container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .loading__content {
-        display: inline-block;
-        width: 50px;
-
-      }
-
-
-    }
     .inner {
       &__left, &__right {
         display: flex;
         flex-direction: column;
         align-items: center;
         height: 100%;
-        overflow: scroll;
+        overflow-y: scroll;
 
       }
       &__left {
@@ -201,7 +180,7 @@ export default {
             flex-grow: 1;
             overflow-y: auto;
             padding: 10px;
-            background-color: rgba(color.adjust($color-background, $lightness: 0%),.4);
+            background-color: rgba($color-background,.4);
             box-shadow: 0 0 4px 0px color.adjust($color-background, $lightness: 10%);
             border-radius: 5px;
             z-index: 1;

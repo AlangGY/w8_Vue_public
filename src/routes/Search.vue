@@ -3,11 +3,7 @@
     <div class="search__keyword">
       {{ searchingBy }}
     </div>
-    <div
-      v-if="isLoading"
-      class="search__loading">
-      Loading...
-    </div>
+    <Loading v-if="isLoading" />
     <div
       v-else-if="searchingBy && movies.length === 0"
       class="search__error">
@@ -43,9 +39,9 @@
 
 <script>
 import MovieViewer from '~/components/MovieViewer';
-
+import Loading from '~/components/Loading';
 export default {
-  components : { MovieViewer },
+  components : { MovieViewer, Loading },
   data(){
     return { 
       page : 1,
@@ -101,7 +97,9 @@ export default {
   flex-direction: column;
   padding: 20px;
   overflow-y: auto;
-  height: 100%;
+  height: calc(100% - $height-nav);
+  width: 100%;
+  position: absolute;
   .search__keyword {
     font-size: 32px;
     width: 500px;
@@ -114,7 +112,7 @@ export default {
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(5,1fr);
-    padding-bottom: 10px;
+    padding : 10px 0;
     column-gap: 10px;
     row-gap: 20px;
     overflow-y: scroll;
@@ -124,6 +122,7 @@ export default {
       cursor: pointer;
       transition: .2s ease-in-out;
       &:hover {
+        transform: scale(1.01);
         .movie {
           &__poster {
             transition: .2s ease-in-out;
@@ -133,17 +132,17 @@ export default {
 
           }
         }
-        // background-color: rgba(white,.5);
-        transform: scale(1.01);
       }
       .movie {
         &__poster--container {
           width: 300px;
           height: 450px;
-          background-color: white;
+          background-color: rgba(color.adjust($color-background, $lightness : 20%),.4);
+          border-radius: 5px;
           .movie__poster--image {
             width: 300px;
             height: 450px;
+            border-radius: 5px;
           }
         }
         &__title {
