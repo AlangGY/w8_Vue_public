@@ -1,10 +1,15 @@
 <template>
   <section>
-    <h1>Home!</h1>
+    <!-- <h1>Home!</h1> -->
+    <div class="logo--image">
+    </div>
+    <SearchBar />
   </section>
 </template>
 
 <script>
+import SearchBar from '~/components/SearchBar';
+export default { components : { SearchBar } };
 
 </script>
 
@@ -16,6 +21,13 @@ section {
     font-size: 50px;
     margin-top: 200px;
     text-align: center;
+  }
+  .logo--image {
+    width: 235px;
+    height: 275px;
+    background-size: cover;
+    margin: 0 auto;
+    background-image: url('/static/logo-main.png');
   }
 }
 </style>

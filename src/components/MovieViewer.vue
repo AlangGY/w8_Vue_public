@@ -7,6 +7,13 @@
       :style="{'background-image' : `url(${biggerImageUrl})`}"
       class="movie-viewer__inner"
       @click.stop>
+      <div class="button__inner">
+        <Button
+          v-bind="{width:50, height:50, backgroundColor: 'rgba(0,0,0,.3)'}"
+          @click="closeViewer">
+          x
+        </Button>
+      </div>
       <div
         v-if="isLoading"
         class="loading__inner">
@@ -70,8 +77,10 @@
 
 <script>
 import Loading from '~/components/Loading';
+import Button from '~/components/Button';
+
 export default {
-  components : { Loading },
+  components : { Loading, Button },
   props : {
     selectedMovie : {
       type : Object,
@@ -98,12 +107,24 @@ export default {
       this.isLoading = false;
     }
   },
+  mounted(){
+    window.addEventListener('keyup', this.handleKeyUp);
+  },
+  unmounted(){
+    window.removeEventListener('keyup', this.handleKeyUp);
+  },
   methods : {
     closeViewer(){
       this.$emit('close-viewer');
+    },
+    handleKeyUp({ key }){
+      if(key === 'Escape') {
+        this.closeViewer();
+      }
     }
   }
 };
+
 </script>
 
 <style lang="scss" scoped>
@@ -136,6 +157,11 @@ export default {
     align-items: center;
     * {
       box-sizing: border-box;
+    }
+    .button__inner {
+      position: absolute;
+      top: 0;
+      right: 0;
     }
     .loading__inner {
       position: absolute;

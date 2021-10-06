@@ -9,26 +9,10 @@
       class="search__error">
       No Result!
     </div>
-    <ul
+    <MoviesList
       v-else
-      class="movies__grid">
-      <li
-        v-for="movie in movies"
-        :key="movie.imdbID"
-        class="movie__container"
-        @click="getMovieById(movie.imdbID)">
-        <div class="movie__poster--container">
-          <img
-            :ref="`${movie.imdbID}Image`"
-            :src="movie.Poster"
-            :alt="movie.Title"
-            class="movie__poster--image"
-            @error="$refs[`${movie.imdbID}Image`].style.display='none'">
-        </div>
-        <div class="movie__title">
-          {{ movie.Title }}
-        </div>
-      </li>
+      :movies="movies"
+      @movie-clicked="getMovieById">
       <div
         class="movies__loader--container">
         <MovieLoader
@@ -36,7 +20,7 @@
           :is-loading="isLoading"
           @touched="searchMovies" />
       </div>
-    </ul>
+    </MoviesList>
     <MovieViewer
       v-if="isMovieSelected"
       :selected-movie="selectedMovie"
@@ -45,12 +29,13 @@
 </template>
 
 <script>
+import MoviesList from '~/components/MoviesList';
 import MovieViewer from '~/components/MovieViewer';
 import MovieLoader from '~/components/MovieLoader';
 import Loading from '~/components/Loading';
 
 export default {
-  components : { MovieViewer, MovieLoader, Loading },
+  components : { MoviesList, MovieViewer, MovieLoader, Loading },
   data(){
     return { 
       page : 1,
@@ -66,23 +51,26 @@ export default {
       return this.$route.params.keyword;
     },
     movies(){
-      return this.$store.state.movies;
+      return this.$store.state.moviesStore.movies;
     },
     moviesTotalCount(){
-      return this.$store.state.moviesTotalCount;
+      return this.$store.state.moviesStore.moviesTotalCount;
     },
-    params(){
+    searchQueries(){
       return { searchingBy : this.searchingBy, page : this.page };
     }
     
   },
   watch : {
-    $route() {
-      this.initialize();
-      this.searchMovies();
+    $route(newValue) {
+      if (newValue.name ==='Search') {
+        this.searchMovies();
+      }
     }
   },
   created() {
+    console.log('created!');
+    this.initialize();
     this.searchMovies();
   },
   methods : {
@@ -90,23 +78,21 @@ export default {
       if(!this.isLoading){
         this.isLoading = true;
         console.log('get movies!');
-        await this.$store.dispatch('searchMovies', this.params);
-        this.$nextTick(() => {
-          this.isLoading = false;
-          this.page++;
-        });
+        await this.$store.dispatch('moviesStore/searchMovies', this.searchQueries);
+        this.isLoading = false;
+        this.page++;
       }
       if (this.isfirstLoading) this.isfirstLoading = false;
     },
     async getMovieById(id){
       this.isMovieSelected = true;
-      const movie = await this.$store.dispatch('getMovieById', { id, plot : 'full' });
+      const movie = await this.$store.dispatch('moviesStore/getMovieById', { id, plot : 'full' });
       if(movie && this.isMovieSelected){
         this.selectedMovie = movie;
       }
     },
     initialize(){
-      this.$store.commit('assignState', { movies : [], moviesTotalCount : 0 });
+      this.$store.commit('moviesStore/assignState', { movies : [], moviesTotalCount : 0 });
       this.page = 1;
       this.isfirstLoading = true;
 
@@ -128,7 +114,7 @@ export default {
   flex-direction: column;
   padding: 20px;
   overflow-y: auto;
-  height: calc(100% - $height-nav);
+  height: calc(100% - $height-header);
   width: 100%;
   position: absolute;
   .search__keyword {

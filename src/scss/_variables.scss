@@ -5,7 +5,6 @@ $color-background : #99999a;
 $color-background--gradient :
   linear-gradient(
      color.adjust($color-background, $lightness : 50%),$color-background);
-$color-nav : rgb(255, 255, 255);
 $color-border : color.adjust($color-background , $lightness : 20%);
 
 
@@ -15,5 +14,5 @@ $color-border : color.adjust($color-background , $lightness : 20%);
 
 
 
-// fixed nav height
-$height-nav : 80px;
+// fixed header height
+$height-header : 80px;

@@ -6,28 +6,19 @@
       </span>
       <input
         ref="input"
-        :value="searchingBy"
         type="text"
-        placeholder="영화명을 입력하세요"
-        @input="input">
+        placeholder="영화명을 입력하세요">
     </div>
   </form>
 </template>
 
 <script>
 export default {
-  computed : {
-    searchingBy(){
-      return this.$store.state.searchingBy;
-    }
-  },
   methods : {
-    input(){
-      this.$store.commit('assignState', { searchingBy : this.$refs.input.value });
-    },
     searchBy(){
       if (this.$refs.input.value){
-        this.$router.push(`/search/${this.searchingBy}`);
+        this.$store.commit('moviesStore/assignState', { searchingBy : this.$refs.input.value });
+        this.$router.push(`/search/${this.$refs.input.value}`);
         this.$refs.input.value = '';
       }
     }
@@ -38,18 +29,18 @@ export default {
 <style lang="scss" scoped>
 form {
   width: 100%;
-  height: 100%;
+  height: 50px;
   display: flex;
   justify-content: center;
   .input__container {
     width: 50%;
     height: 100%;
-    position: absolute;
     display: flex;
     justify-content: center;
     transition: 0.2s ease-in-out;
+    position: relative;
     &:focus-within {
-      width: 100%;
+      width: 70%;
     }
     .material-icons {
       position: absolute;
@@ -62,7 +53,7 @@ form {
     }
     input {
       width: 100%;
-      height: 100%;
+      height: 50px;
       // background-color: color.adjust($color-background, $lightness: 10%);
       border: 3px solid $color-black;
       box-shadow: 0 0 6px -1px $color-black;

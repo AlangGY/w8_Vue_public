@@ -1,6 +1,6 @@
 <template>
   <div class="app__inner">
-    <Nav />
+    <Header />
     <main class="app__page">
       <RouterView />
     </main>
@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import Nav from '~/components/Nav';
+import Header from '~/components/Header';
 
-export default { components : { Nav } };
+export default { components : { Header } };
 </script>
 
 <style lang="scss">
@@ -28,21 +28,21 @@ export default { components : { Nav } };
     }
   }
 body {
-  background-color: $color-background;
+  // background-color: $color-background;
 }
 .app__inner {
   background : $color-background--gradient;
   // background-color: $color-background;
   font-family: 'Noto Sans KR', sans-serif;
   color : $color-font;
-  height: calc(100vh - $height-nav);
+  height: calc(100vh - $height-header);
   font-size: 18px;
   line-height: 1.4;
   
 
   .app__page {
     height: 100%;
-    margin-top: $height-nav;
+    margin-top: $height-header;
     overflow-y: hidden;
   }
 }
