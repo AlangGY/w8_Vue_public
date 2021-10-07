@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev:vercel": "vercel dev",
-    "build": "webpack --mode production",
-    "build:vercel": "vercel"
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
