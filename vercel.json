@@ -1,9 +1,16 @@
 {
   "routes": [
     {
-      "src": "/[^.]+",
-      "dest": "/",
-      "status": 200
+      "handle": "filesystem"
+    },
+    {
+      "src": "^(?!\\/api).*",
+      "dest": "/"
     }
-  ]
+  ],
+  "functions": {
+    "api/getmovies.js": {
+      "includeFiles": "_files/**"
+    }
+  }
 }

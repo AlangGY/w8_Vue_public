@@ -8,10 +8,11 @@ module.exports = {
   resolve : {
     extensions : ['.vue', '.js'],
     alias : { '~' : path.resolve(__dirname, 'src') }
+    // fallback : { 'os' : require.resolve('os-browserify/browser'), 'path' : require.resolve('path-browserify') }
   },
   entry : './src/main.js',
   output : {
-    path : path.resolve(__dirname, 'dist'),
+    path : path.resolve(__dirname, 'public'),
     publicPath : '/',
     clean : true
   },
