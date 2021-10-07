@@ -107,9 +107,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@media screen {
-  
-}
+
 .search__inner {
   display: flex;
   flex-direction: column;

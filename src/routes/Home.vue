@@ -3,7 +3,9 @@
     <!-- <h1>Home!</h1> -->
     <div class="logo--image">
     </div>
-    <SearchBar />
+    <div class="search-bar__container">
+      <SearchBar />
+    </div>
   </section>
 </template>
 
@@ -28,6 +30,10 @@ section {
     background-size: cover;
     margin: 0 auto;
     background-image: url('/static/logo-main.png');
+  }
+  .search-bar__container {
+    width: 80%;
+    margin: 0 auto;
   }
 }
 </style>

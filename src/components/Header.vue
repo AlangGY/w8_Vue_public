@@ -38,10 +38,9 @@ export default { components : { SearchBar } };
 header {
   width: 100%;
   height: $height-header;
-  position: fixed;
+  position: sticky;
   top: 0;
   background-color: $color-white;
-  // border-bottom: 1px solid $color-border;
   box-shadow: 0 0 5px 0 color.adjust($color-border, $lightness : -10%);
   .header__inner {
     height: 100%;
@@ -65,12 +64,8 @@ header {
         }
         .logo {
           &__img {
-            width: calc(450px / 4);
-            height: calc(156px / 4);
-            background-image: url("/static/logo-header.png");
             background-size: cover;
-            transition: 0.1s ease-in-out;
-
+            transition: transform 0.1s ease-in-out;
           }
           &__img2 {
             width: calc(450px / 4);
@@ -78,22 +73,45 @@ header {
             background-image: url("/static/logo-header_2.png");
             background-size: cover;
             margin-right: 10px;
-            transition: 0.1s ease-in-out;
+            transition: transform 0.1s ease-in-out;
 
           }
         }
       }
       &__search-bar--container {
-        width: 500px;
+        width: 60%;
         height: 50px;
-        top: calc(50% - 25px);
-        left: calc(50% - 250px);
         position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
 
       }
     }
   }
 }
+@media screen and (min-width: 701px) {
+  .logo__img {
+    width: calc(450px / 4);
+    height: calc(156px / 4);
+    background-image: url("/static/logo-header.png");
+  }
+}
+@media screen and (max-width: 700px) {
+  .logo__img {
+    width: calc(235px / 4);
+    height: calc(275px / 4);
+    background-image: url("/static/logo-main.png");
+  }
+  .logo__img2 {
+    display: none;
+  }
+  
+}
+
+
 @keyframes show {
   to {
     opacity: 1;

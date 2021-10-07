@@ -129,10 +129,10 @@ export default {
 
 <style lang="scss" scoped>
 .movie-viewer__container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background-color: rgba($color-background, .7);
   display: flex;
@@ -178,7 +178,6 @@ export default {
 
       }
       &__left {
-        width: 550px;
         flex-shrink: 0;
         .movie {
           &__poster {
@@ -255,6 +254,7 @@ export default {
 
         }
         &__left {
+          width: 550px;
           .movie__poster {
             height: 600px;
           }

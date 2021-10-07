@@ -29,18 +29,17 @@ export default {
 <style lang="scss" scoped>
 form {
   width: 100%;
-  height: 50px;
   display: flex;
   justify-content: center;
   .input__container {
-    width: 50%;
-    height: 100%;
+    width: 80%;
+    height: 50px;
     display: flex;
     justify-content: center;
     transition: 0.2s ease-in-out;
     position: relative;
     &:focus-within {
-      width: 70%;
+      width: 100%;
     }
     .material-icons {
       position: absolute;

@@ -31,18 +31,17 @@ body {
   // background-color: $color-background;
 }
 .app__inner {
-  background : $color-background--gradient;
   // background-color: $color-background;
   font-family: 'Noto Sans KR', sans-serif;
+  background : $color-background--gradient;
   color : $color-font;
-  height: calc(100vh - $height-header);
+  height: 100vh;
   font-size: 18px;
   line-height: 1.4;
   
 
   .app__page {
-    height: 100%;
-    margin-top: $height-header;
+    /* margin-top: $height-header; */
     overflow-y: hidden;
   }
 }
