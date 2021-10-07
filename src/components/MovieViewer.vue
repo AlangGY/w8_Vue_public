@@ -36,7 +36,7 @@
                 ref="poster"
                 :src="biggerImageUrl"
                 :alt="selectedMovie.Title"
-                @error="$refs.poster.style.display = 'none'">
+                @error="$refs.poster.src='https://via.placeholder.com/300x450.png?text=No+Image'">
             </div>
           </div>
           <div class="inner__column">
@@ -168,6 +168,7 @@ export default {
       position: absolute;
       top: 0;
       right: 0;
+      z-index: 1;
     }
     .loading__inner {
       position: absolute;
@@ -187,15 +188,12 @@ export default {
         flex-shrink: 0;
         .movie {
           &__poster {
-            // height: 750px;
-            // width: 500px;
             border-radius: 5px;
             box-shadow: 0 0 20px -5px rgba(color.adjust($color-background, $lightness : 30%),.8);
             background-color: rgba($color-background,.7);
             img {
               height: 100%;
-              // width: 500px;
-              // height: 700px;
+              width: 100%;
               border-radius: 5px;
             }
           }

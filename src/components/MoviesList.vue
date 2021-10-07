@@ -6,13 +6,14 @@
       :key="movie.imdbID"
       class="movie__container"
       @click="$emit('movie-clicked',movie.imdbID)">
-      <div class="movie__poster--container">
+      <div class="movie__poster__container">
         <img
           :ref="`${movie.imdbID}Image`"
           :src="movie.Poster"
           :alt="movie.Title"
           class="movie__poster--image"
-          @error="$refs[`${movie.imdbID}Image`].style.display='none'">
+          @error="$refs[`${movie.imdbID}Image`]
+            .src='https://via.placeholder.com/300x450.png?text=No+Image'">
       </div>
       <div class="movie__title">
         {{ movie.Title }}
@@ -40,14 +41,15 @@ export default {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit,300px);
-  padding : 10px 0;
+  grid-auto-rows: 480px;
+  margin : 10px 0;
   column-gap: 10px;
   row-gap: 20px;
   overflow-y: scroll;
   justify-items: center;
   .movie__container {
-    width: 300px;
-    height: 480px;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
     transition: .2s ease-in-out;
     &:hover {
@@ -63,7 +65,7 @@ export default {
       }
     }
     .movie {
-      &__poster--container {
+      &__poster__container {
         width: 300px;
         height: 450px;
         background-color: rgba(color.adjust($color-background, $lightness : 20%),.4);
@@ -81,11 +83,6 @@ export default {
         white-space: nowrap;
       }
     }
-  }
-  .movies__loader--container {
-    grid-column: 1 / -1;
-    height: 50px;
-    width: 100%;
   }
 }
 </style>
