@@ -64,6 +64,7 @@ export default {
   watch : {
     $route(newValue) {
       if (newValue.name ==='Search') {
+        this.initialize();
         this.searchMovies();
       }
     }
