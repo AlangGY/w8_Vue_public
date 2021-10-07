@@ -13,13 +13,10 @@
       v-else
       :movies="movies"
       @movie-clicked="getMovieById">
-      <div
-        class="movies__loader--container">
-        <MovieLoader
-          v-if="movies.length < moviesTotalCount"
-          :is-loading="isLoading"
-          @touched="searchMovies" />
-      </div>
+      <MovieLoader
+        v-if="movies.length < moviesTotalCount"
+        :is-loading="isLoading"
+        @touched="searchMovies" />
     </MoviesList>
     <MovieViewer
       v-if="isMovieSelected"
@@ -70,7 +67,6 @@ export default {
     }
   },
   created() {
-    console.log('created!');
     this.initialize();
     this.searchMovies();
   },
@@ -78,7 +74,6 @@ export default {
     async searchMovies(){
       if(!this.isLoading){
         this.isLoading = true;
-        console.log('get movies!');
         await this.$store.dispatch('moviesStore/searchMovies', this.searchQueries);
         this.isLoading = false;
         this.page++;
@@ -182,11 +177,6 @@ export default {
           white-space: nowrap;
         }
       }
-    }
-    .movies__loader--container {
-      grid-column: 1 / -1;
-      height: 50px;
-      width: 100%;
     }
   }
 }
