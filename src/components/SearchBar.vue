@@ -17,8 +17,9 @@ export default {
   methods : {
     searchBy(){
       if (this.$refs.input.value){
-        this.$store.commit('moviesStore/assignState', { searchingBy : this.$refs.input.value });
-        this.$router.push(`/search/${this.$refs.input.value}`);
+        const searchingBy = this.$refs.input.value.trim();
+        this.$store.commit('moviesStore/assignState', { searchingBy });
+        this.$router.push(`/search/${searchingBy}`);
         this.$refs.input.value = '';
       }
     }
