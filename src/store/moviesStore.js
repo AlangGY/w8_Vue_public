@@ -39,7 +39,7 @@ const moviesStore = {
 async function _request ( restParams) {
   const res = await fetch('/api/getmovies', {
     method : 'POST',
-    body : JSON.stringify({ params : restParams })
+    body : JSON.stringify({ params : encodeURI(restParams) })
   }).then(data => data.json());
   return res.body;
 }
