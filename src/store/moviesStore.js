@@ -25,9 +25,6 @@ const moviesStore = {
         commit('pushMovies', { movies : movies.Search });
         commit('assignState', { moviesTotalCount : movies.totalResults });
       }
-      else {
-        // commit('assignState', { movies : [], moviesTotalCount : 0 });
-      }
     },
     async getMovieById(context, payload) {
       const { id, plot } = payload;
@@ -39,14 +36,12 @@ const moviesStore = {
   } 
 };
 
-const API_END_POINT = 'https://www.omdbapi.com';
-const API_KEY = '7035c60c';
-
 async function _request ( restParams) {
-  const res = await fetch(`${API_END_POINT}?apikey=${API_KEY}&type=movie&${restParams}`,
-    { method : 'GET' })
-    .then(res => res.json());
-  return res;
+  const res = await fetch('/api/getmovies', {
+    method : 'POST',
+    body : JSON.stringify({ params : restParams })
+  }).then(data => data.json());
+  return res.body;
 }
 
 export default moviesStore;
