@@ -155,8 +155,14 @@ export default {
     position: relative;
     overflow-y: scroll;
     align-items: center;
+    animation: enlarge 0.2s ease-out forwards;
+
     * {
       box-sizing: border-box;
+    }
+    & > * {
+      opacity: 0;
+      animation: show 0.8s ease-out forwards;
     }
     .button__inner {
       position: absolute;
@@ -304,6 +310,26 @@ export default {
         }
       }
     }
+  }
+}
+
+@keyframes enlarge {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>
