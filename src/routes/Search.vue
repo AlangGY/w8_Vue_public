@@ -121,10 +121,8 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  overflow-y: auto;
-  height: calc(100% - $height-header);
+  height: 100%;
   width: 100%;
-  position: absolute;
   .search__keyword {
     font-size: 32px;
     font-weight: 700;

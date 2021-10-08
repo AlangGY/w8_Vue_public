@@ -39,6 +39,7 @@ body {
   
 
   .app__page {
+    height: calc(100% - $height-header);
     overflow-y: hidden;
   }
 }
