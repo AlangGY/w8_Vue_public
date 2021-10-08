@@ -28,10 +28,8 @@ export default { components : { Header } };
     }
   }
 body {
-  // background-color: $color-background;
 }
 .app__inner {
-  // background-color: $color-background;
   font-family: 'Noto Sans KR', sans-serif;
   background : $color-background--gradient;
   color : $color-font;
@@ -41,7 +39,6 @@ body {
   
 
   .app__page {
-    /* margin-top: $height-header; */
     overflow-y: hidden;
   }
 }
