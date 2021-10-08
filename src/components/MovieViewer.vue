@@ -9,7 +9,12 @@
       @click.stop>
       <div class="button__inner">
         <Button
-          v-bind="{width:50, height:50, backgroundColor: 'rgba(0,0,0,.3)'}"
+          v-bind="{
+            width:50,
+            height:50,
+            backgroundColor:'rgba(0,0,0,.3)',
+            color: 'white'
+          }"
           @click="closeViewer">
           x
         </Button>
@@ -18,6 +23,11 @@
         v-if="isLoading"
         class="loading__inner">
         <Loading />
+      </div>
+      <div
+        v-else-if="loadFailed"
+        class="load--failed">
+        해당하는 영화정보가 없습니다.
       </div>
       <template v-else>
         <div class="inner__left">
@@ -85,6 +95,10 @@ export default {
     selectedMovie : {
       type : Object,
       default : () => ({})
+    },
+    loadFailed : {
+      type : Boolean,
+      default : false
     }
   },
   emits : ['close-viewer'],
@@ -104,6 +118,9 @@ export default {
   },
   watch : {
     selectedMovie(){
+      this.isLoading = false;
+    },
+    loadFailed(){
       this.isLoading = false;
     }
   },
@@ -127,7 +144,9 @@ export default {
 
 </script>
 
+
 <style lang="scss" scoped>
+@import '~/scss/_keyframes.scss';
 .movie-viewer__container {
   position: fixed;
   top: 0;
@@ -249,6 +268,15 @@ export default {
   display: inline-block;
 }
 
+.load--failed {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 42px;
+}
+
 @media screen and (min-width : 1301px ) {
   .movie-viewer__container {
     .movie-viewer__inner {
@@ -311,23 +339,5 @@ export default {
   }
 }
 
-@keyframes enlarge {
-  from {
-    transform: scale(0);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
 
-@keyframes show {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 </style>
