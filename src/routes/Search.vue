@@ -61,7 +61,7 @@ export default {
   },
   watch : {
     $route(newValue, oldValue) {
-      if (newValue.name !== oldValue.name && newValue.name ==='Search') {
+      if (newValue.name ==='Search' && newValue.params.keyword !== oldValue.params.keyword) {
         this.initialize();
       }
       if(newValue.query.id) {
