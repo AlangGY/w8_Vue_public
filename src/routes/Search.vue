@@ -61,14 +61,11 @@ export default {
   },
   watch : {
     $route(newValue, oldValue) {
-      if (newValue.name ==='Search' && newValue.params.keyword !== oldValue.params.keyword) {
-        this.initialize();
-      }
-      if(newValue.query.id) {
-        this.getMovieById(newValue.query.id);
-      }
-      else {
-        this.closeViewer();
+      if (newValue.name ==='Search') {
+        if (newValue.params?.keyword !== oldValue.params?.keyword) {
+          this.initialize();
+        }
+        newValue.query.id ? this.getMovieById(newValue.query.id) : this.closeViewer();
       }
     }
   },
