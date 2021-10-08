@@ -7,7 +7,7 @@
       <input
         ref="input"
         type="text"
-        placeholder="영화명을 입력하세요">
+        placeholder="영화명(영문)을 입력하세요">
     </div>
   </form>
 </template>

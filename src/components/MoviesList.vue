@@ -59,9 +59,6 @@ export default {
           transition: .2s ease-in-out;
           filter: brightness(1.5);
         }
-        &__title {
-
-        }
       }
     }
     .movie {

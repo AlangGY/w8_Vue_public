@@ -6,6 +6,7 @@
     <div class="search-bar__container">
       <SearchBar />
     </div>
+    <h2> 영문 검색만 가능합니다 </h2>
   </section>
 </template>
 
@@ -19,9 +20,9 @@ export default { components : { SearchBar } };
 section {
   width: 100%;
 
-  h1 {
-    font-size: 50px;
-    margin-top: 200px;
+  h2 {
+    font-size: 30px;
+    margin-top: 100x;
     text-align: center;
   }
   .logo--image {

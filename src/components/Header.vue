@@ -23,6 +23,7 @@ export default { components : { SearchBar } };
 </script>
 
 <style lang="scss" scoped>
+@import '~/scss/_keyframes.scss';
 
 
 @media screen and (max-width : 960px) {
@@ -112,9 +113,4 @@ header {
 }
 
 
-@keyframes show {
-  to {
-    opacity: 1;
-  }
-}
 </style>

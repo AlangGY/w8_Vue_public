@@ -20,6 +20,10 @@ export default {
     backgroundColor : {
       type : String,
       default : 'rgba(0,0,0,0.3)'
+    },
+    color : {
+      type : String,
+      default : 'white'
     }
   },
   computed : {
@@ -27,8 +31,8 @@ export default {
       return {
         width : this.width + 'px',
         height : this.height + 'px',
-        backgroundColor : this.backgroundColor
-
+        backgroundColor : this.backgroundColor,
+        color : this.color
       };
     }
   }
@@ -41,11 +45,10 @@ button {
   border-radius : 5px;
   font-size : 20px;
   font-weight: 700;
-  color : white;
   cursor: pointer;
-
+  opacity : 0.8;
   &:hover {
-    color : red;
+    opacity : 1;
   }
 }
 </style>

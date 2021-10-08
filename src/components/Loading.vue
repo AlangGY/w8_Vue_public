@@ -20,6 +20,8 @@ export default {
 
 
 <style lang="scss" scoped>
+@import '~/scss/_keyframes.scss';
+
 .loading__container {
   width: 100%;
   height: 100%;
@@ -33,9 +35,5 @@ export default {
     animation: spin 0.5s infinite ease-in;
   }
 }
-@keyframes spin {
-  to {
-    transform: rotate(1turn);
-  }
-}
+
 </style>
