@@ -1,6 +1,7 @@
 <template>
   <ul
-    class="movies__grid">
+    class="movies__grid"
+    dir="ltr">
     <li
       v-for="movie in movies"
       :key="movie.imdbID"
@@ -47,6 +48,7 @@ export default {
   row-gap: 20px;
   overflow-y: scroll;
   justify-items: center;
+  scroll-snap-type: y mandatory;
   .movie__container {
     width: 100%;
     height: 100%;
@@ -80,6 +82,36 @@ export default {
         white-space: nowrap;
       }
     }
+  }
+}
+@media screen and (min-width: 1899px) {
+  .movie__container:nth-child(6n+1) {
+    scroll-snap-align: center;
+  }
+}
+@media screen and (min-width: 1587px) and (max-width : 1899px) {
+  .movie__container:nth-child(5n+1) {
+    scroll-snap-align: center;
+  }
+}
+@media screen and (min-width: 1278px) and (max-width: 1587px) {
+  .movie__container:nth-child(4n+1) {
+    scroll-snap-align: center;
+  }
+}
+@media screen and (min-width: 967px) and (max-width:1277px) {
+  .movie__container:nth-child(3n+1) {
+    scroll-snap-align: center;
+  }
+}
+@media screen and (min-width: 658px) and (max-width:967px) {
+  .movie__container:nth-child(2n+1) {
+    scroll-snap-align: center;
+  }
+}
+@media screen and (max-width: 657px ) {
+  .movie__container {
+    scroll-snap-align: center;
   }
 }
 </style>
