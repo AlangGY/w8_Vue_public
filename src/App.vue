@@ -24,14 +24,13 @@ export default { components : { Header } };
     background-color: rgba(rgb(218, 218, 218),.5);
     &-thumb {
       border-radius: 5px;
-      background:color.adjust($color-border, $lightness: -70%);
+      background: $color-background;
     }
   }
 body {
 }
 .app__inner {
   font-family: 'Noto Sans KR', sans-serif;
-  background : $color-background--gradient;
   color : $color-font;
   height: 100vh;
   font-size: 18px;
