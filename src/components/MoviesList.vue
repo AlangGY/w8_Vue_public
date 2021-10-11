@@ -3,9 +3,10 @@
     class="movies__grid"
     dir="ltr">
     <li
-      v-for="movie in movies"
+      v-for="(movie,idx) in movies"
       :key="movie.imdbID"
       class="movie__container"
+      :style="{animationDelay : `${(idx % moviesPerPage) * 0.1}s`}"
       @click="$emit('movie-clicked',movie.imdbID)">
       <div class="movie__poster__container">
         <img
@@ -32,34 +33,43 @@ export default {
       default : () => []
     }
   },
-  emits : ['movie-clicked']
+  emits : ['movie-clicked'],
+  data() {
+    return { moviesPerPage : 10 };
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+@import '../scss/_keyframes';
+
 .movies__grid {
   height: 100%;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit,300px);
   grid-auto-rows: 480px;
-  margin : 10px 0;
+  padding : 20px 0;
   column-gap: 10px;
   row-gap: 20px;
   overflow-y: scroll;
   justify-items: center;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   .movie__container {
     width: 100%;
     height: 100%;
     cursor: pointer;
     transition: .2s ease-in-out;
+    opacity: 0;
+    animation: show .8s forwards;
     &:hover {
-      transform: scale(1.01);
       .movie {
-        &__poster {
+        &__poster__container {
+          transform: scale(1.01);
           transition: .2s ease-in-out;
-          filter: brightness(1.5);
+          filter: brightness(1.1);
+          transform : translateY(-10px);
+          box-shadow: 0 2px 4px 0px $color-black;
         }
       }
     }
@@ -68,7 +78,9 @@ export default {
         width: 300px;
         height: 450px;
         background-color: rgba(color.adjust($color-background, $lightness : 20%),.4);
+        box-shadow: 0 0 4px 0px $color-black;
         border-radius: 5px;
+        
         .movie__poster--image {
           width: 300px;
           height: 450px;

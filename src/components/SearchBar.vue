@@ -54,9 +54,8 @@ form {
     input {
       width: 100%;
       height: 50px;
-      // background-color: color.adjust($color-background, $lightness: 10%);
-      border: 3px solid $color-black;
-      box-shadow: 0 0 6px -1px $color-black;
+      border: 2px solid $color-yellow;
+      box-shadow: 0 0 4px -1px color.adjust($color-yellow, $lightness : -10%);
       border-radius: 5px;
       color: $color-font;
       font-size: 30px;

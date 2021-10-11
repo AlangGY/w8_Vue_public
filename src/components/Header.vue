@@ -42,7 +42,8 @@ header {
   position: sticky;
   top: 0;
   background-color: $color-white;
-  box-shadow: 0 0 5px 0 color.adjust($color-border, $lightness : -10%);
+  background-color: #1b52c9;
+  box-shadow: 0 0 3px 0 color.adjust($color-border, $lightness : -10%);
   .header__inner {
     height: 100%;
     display: flex;

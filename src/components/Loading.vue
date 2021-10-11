@@ -29,7 +29,7 @@ export default {
   justify-content: center;
   align-items: center;
   .loading--cycle {
-    border: 5px solid black;
+    border: 5px solid $color-background;
     border-radius: 50%;
     border-top-color: $color-white;
     animation: spin 0.5s infinite ease-in;

@@ -1,11 +1,9 @@
 $color-font : #0e0e0e;
 $color-white : white;
-$color-black : black;
-$color-background : #99999a;
-$color-background--gradient :
-  linear-gradient(
-     color.adjust($color-background, $lightness : 50%),$color-background);
-$color-border : color.adjust($color-background , $lightness : 20%);
+$color-black : #111;
+$color-yellow : #f8c216;
+$color-background : #1b52c9;
+$color-border : color.adjust($color-yellow , $lightness : -20%);
 
 
 

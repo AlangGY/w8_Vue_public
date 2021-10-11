@@ -153,7 +153,7 @@ export default {
   left: 0;
   height: 100vh;
   width: 100%;
-  background-color: rgba($color-background, .7);
+  background-color: rgba($color-black, .7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -163,7 +163,7 @@ export default {
   .movie-viewer__inner {
     width: 85%;
     height: 90%;
-    background-color: rgba(color.adjust($color-background, $lightness : -30%),.8);
+    background-color: rgba($color-black,.8);
     background-size: cover;
     background-blend-mode: darken;
     display: flex;
@@ -208,7 +208,7 @@ export default {
         .movie {
           &__poster {
             border-radius: 5px;
-            box-shadow: 0 0 20px -5px rgba(color.adjust($color-background, $lightness : 30%),.8);
+            box-shadow: 0 0 20px -5px rgba(color.adjust($color-black, $lightness : 50%),.8);
             background-color: rgba($color-background,.7);
             img {
               height: 100%;
@@ -246,8 +246,8 @@ export default {
             flex-grow: 1;
             overflow-y: auto;
             padding: 10px;
-            background-color: rgba($color-background,.4);
-            box-shadow: 0 0 4px 0px color.adjust($color-background, $lightness: 10%);
+            background-color: rgba($color-black,.4);
+            box-shadow: 0 0 4px 0px color.adjust($color-black, $lightness: 10%);
             border-radius: 5px;
             z-index: 1;
           }
@@ -309,7 +309,10 @@ export default {
         }  
       }
       &__left {
-        height: auto;
+        .movie__poster {
+          width: 500px;
+          height: 740px;
+        }
       }
     }
   }
@@ -323,9 +326,8 @@ export default {
       .inner {
         &__left {
           .movie__poster {
-            img {
-              width: 300px;
-            }
+           width: 300px;
+           height: 444px;
           }
         }
         &__right {

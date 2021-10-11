@@ -125,7 +125,7 @@ export default {
     font-weight: 700;
     padding-bottom: 5px;
     margin-bottom: 20px;
-    box-shadow: 0 5px 3px -3px color.adjust($color-border, $lightness : 10%);
+    border-bottom : 2px solid color.adjust($color-border, $lightness : 30%);
   }
 }
 </style>
