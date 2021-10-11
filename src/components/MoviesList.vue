@@ -96,7 +96,7 @@ export default {
     }
   }
 }
-@media screen and (min-width: 1899px) {
+/* @media screen and (min-width: 1899px) {
   .movie__container:nth-child(6n+1) {
     scroll-snap-align: center;
   }
@@ -125,5 +125,5 @@ export default {
   .movie__container {
     scroll-snap-align: center;
   }
-}
+} */
 </style>
